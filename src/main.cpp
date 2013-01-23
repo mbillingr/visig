@@ -1,55 +1,39 @@
 #include <iostream>
 
-template<class I>
-class InPort
-{
-public:
-    typedef I type;
+#include <string>
+#include <vector>
 
-    void process( )
-    {
-        static_cast<I*>(this)->process( );
-    }
-};
+#include "multi_type.h"
 
-template<typename I>
-class StaticNode
-{
-public:
-    void update( I in )
-    {
-        in.process( );
-    }
-};
+#include <boost/mpl/vector.hpp>
 
 // ======================================
 
-using namespace std;
+typedef boost::mpl::vector<int,std::string,bool,double> typelist;
 
-// ======================================
-
-class MyInPort : public InPort<MyInPort>
+template<typename T>
+struct vector_member_wrapper
 {
-public:
-    void process( )
-    {
-        cout << "Hello!" << endl;
-    }
+    vector_member_wrapper( ) : member() { }
+    std::vector<T> member;
 };
+
+//template<typename T>
+//typedef container_member_wrapper<std::vector,T> vector_member_wrapper;
+
+
+
+typedef multi_type<typelist> Test;
+typedef multi_type<typelist,vector_member_wrapper> TestV;
 
 // ======================================
 
 int main()
 {
-    MyInPort mip;
-    mip.process();
-
-    InPort<MyInPort> ip = mip;
-    ip.process();
-
-    StaticNode<MyInPort> n;
-    n.update( mip );
-
+    Test x;
+    std::cout << x.get<int>( ) << std::endl;
+    std::cout << x.get<std::string>( ) << std::endl;
+    std::cout << x.get<bool>( ) << std::endl;
     return 0;
 }
 
