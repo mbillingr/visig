@@ -9,8 +9,6 @@
 
 // ======================================
 
-typedef boost::mpl::vector<int,std::string,bool,double> typelist;
-
 template<typename T>
 struct vector_member_wrapper
 {
@@ -18,19 +16,11 @@ struct vector_member_wrapper
     std::vector<T> member;
 };
 
-//template<typename T>
-//typedef container_member_wrapper<std::vector,T> vector_member_wrapper;
-
-
-
-typedef multi_type<typelist> Test;
-typedef multi_type<typelist,vector_member_wrapper> TestV;
-
 // ======================================
 
 int main()
 {
-    Test x;
+    multi_type< boost::mpl::vector<int,std::string,bool> > x;
     std::cout << x.get<int>( ) << std::endl;
     std::cout << x.get<std::string>( ) << std::endl;
     std::cout << x.get<bool>( ) << std::endl;
