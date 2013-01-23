@@ -1,11 +1,12 @@
-#include <iostream>
-
-#include <string>
-#include <vector>
 
 #include "multi_type.h"
 
 #include <boost/mpl/vector.hpp>
+
+#include <typeinfo>
+#include <iostream>
+#include <string>
+#include <vector>
 
 // ======================================
 
@@ -16,6 +17,24 @@ struct vector_member_wrapper
     std::vector<T> member;
 };
 
+struct print_action
+{
+    template<typename T>
+    void operator()( T& t )
+    {
+        std::cout << typeid(T).name() << std::endl;
+    }
+};
+
+struct execute_action
+{
+    template<typename T>
+    void operator()( T& t )
+    {
+        t.execute();
+    }
+};
+
 // ======================================
 
 int main()
@@ -24,6 +43,9 @@ int main()
     std::cout << x.get<int>( ) << std::endl;
     std::cout << x.get<std::string>( ) << std::endl;
     std::cout << x.get<bool>( ) << std::endl;
+
+    x.for_all( print_action() );
+
     return 0;
 }
 

@@ -1,6 +1,7 @@
 #ifndef MULTI_TYPE_H
 #define MULTI_TYPE_H
 
+#include <boost/mpl/for_each.hpp>
 #include <boost/mpl/inherit.hpp>
 #include <boost/mpl/inherit_linearly.hpp>
 
@@ -29,8 +30,17 @@ class multi_type
 {
 public:
 
+    // get member of specified type.
+    // TODO: fix obscure error message when type is not available
     template<typename T>
     T &get( ) { return member_wrapper<T>::member; }
+
+    // perform action on each member. class action must implement template<typename T> void operator()( T& t );
+    template<class action>
+    void for_all( action action_instance )
+    {
+        boost::mpl::for_each<type_sequence>(action_instance);
+    };
 };
 
 #endif // MULTI_TYPE_H
