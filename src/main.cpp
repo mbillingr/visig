@@ -1,4 +1,8 @@
 
+#include "node.h"
+
+#include "SharedBuffer.h"
+
 #include "multi_type.h"
 
 #include <boost/mpl/vector.hpp>
@@ -39,12 +43,14 @@ struct execute_action
 
 int main()
 {
-    multi_type< boost::mpl::vector<int,std::string,bool> > x;
+    /*multi_type< boost::mpl::vector<int,std::string,bool> > x;
     std::cout << x.get<int>( ) << std::endl;
     std::cout << x.get<std::string>( ) << std::endl;
     std::cout << x.get<bool>( ) << std::endl;
 
-    x.for_all( print_action() );
+    x.for_all( print_action() );*/
+
+    testSharedBuffer( );
 
     return 0;
 }
