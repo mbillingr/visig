@@ -12,7 +12,7 @@ class Node
 {
 public:
 private:
-    SharedBuffer<T> buffer;
+    //SharedBuffer<T> buffer;
 };
 
 #endif // NODE_H

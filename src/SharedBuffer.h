@@ -6,8 +6,21 @@
 
 // TODO: Don't use pointers... somehow... maybe iterators?
 
-template<typename T>
+template<typename T, unsigned N>
 class SharedBuffer
+{
+
+};
+
+// Specialization for N=1
+template<typename T>
+class SharedBuffer<T,1>
+{
+}
+
+// Specialization for N=0 => Dynamic Size
+template<typename T>
+class SharedBuffer<T,0>
 {
 public:
     SharedBuffer( unsigned int pre_alloc=1 ) : available_buffers(pre_alloc), reserved_buffers() { }
@@ -34,17 +47,15 @@ public:
     }
 
 private:
-
     std::list<T*> available_buffers;
     std::list<T*> reserved_buffers;
-
 };
 
 #include "instance_verboser.h"
 
 void testSharedBuffer( )
 {
-    SharedBuffer<instance_verboser> sb;
+    SharedBuffer<instance_verboser,0> sb;
 
     instance_verboser *a, *b, *c;
 
