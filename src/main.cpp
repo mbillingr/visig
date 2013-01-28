@@ -1,5 +1,6 @@
 
 #include "multi_type.h"
+#include "thread_pool.h"
 
 #include <boost/mpl/vector.hpp>
 
