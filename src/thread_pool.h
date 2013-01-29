@@ -3,6 +3,8 @@
 
 #include <list>
 
+class thread;
+
 namespace thread_pool
 {
     template<class policy>
@@ -14,7 +16,7 @@ namespace thread_pool
         void set_poolsize( size_t num_threads );
         size_t get_poolsize( );
 
-        void enqueue()
+        void add_task( );
     private:
         std::list<thread> pool_;
         policy queue_;
