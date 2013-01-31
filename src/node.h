@@ -1,18 +1,18 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include "SharedBuffer.h"
+#include "ring_buffer.h"
 
 #include <vector>
 
 // Draft of the Node class
 
-template<typename T>
+template<typename T, unsigned N>
 class Node
 {
 public:
 private:
-    //SharedBuffer<T> buffer;
+    T buffer[N];
 };
 
 #endif // NODE_H

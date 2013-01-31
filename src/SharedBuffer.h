@@ -12,7 +12,9 @@
 template<typename T, unsigned N>
 class SharedBuffer
 {
-
+public:
+private:
+    T buffers[N];
 };
 
 // Specialization for N=1
