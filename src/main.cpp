@@ -1,4 +1,6 @@
 
+#include "BlockInterface.h"
+
 #include "node.h"
 
 #include "SharedBuffer.h"
