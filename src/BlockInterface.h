@@ -3,7 +3,11 @@
 
 #include "boost/any.hpp"
 
-#include <tr1/functional>
+#ifdef WIN32
+	#include <functional>
+#else
+	#include <tr1/functional>
+#endif
 #include <vector>
 #include <string>
 
