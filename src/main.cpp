@@ -1,6 +1,8 @@
 
 #include "BlockInterface.h"
 
+#include "test.h"
+
 #include "node.h"
 
 #include "SharedBuffer.h"
@@ -52,6 +54,8 @@ int main()
     std::cout << x.get<bool>( ) << std::endl;
 
     x.for_all( print_action() );*/
+
+    test( );
 
     testSharedBuffer( );
 
