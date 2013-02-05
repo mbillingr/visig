@@ -57,7 +57,7 @@ int main()
 
     test( );
 
-    testSharedBuffer( );
+    //testSharedBuffer( );
 
     return 0;
 }
