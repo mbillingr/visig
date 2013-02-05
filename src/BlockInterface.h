@@ -3,7 +3,6 @@
 
 #include "boost/any.hpp"
 
-#include <tr1/functional>
 #include <vector>
 #include <string>
 
