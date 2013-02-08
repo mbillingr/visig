@@ -1,4 +1,6 @@
 
+#include "numeric_generic.h"
+
 #include "BlockInterface.h"
 
 #include "test.h"
