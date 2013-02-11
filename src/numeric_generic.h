@@ -34,7 +34,7 @@ namespace numeric_generic
     void test( )
     {
         base *b;
-        b->add<int>( 1.0 );
+        //b->add<int>( 1.0 );
     }
 }
 

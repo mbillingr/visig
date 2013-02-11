@@ -8,34 +8,40 @@
 
 class BlockInterface;
 
-typedef void(*blockinput_callback_fpt)(BlockInterface*, const boost::any&);
-typedef void(*blockoutput_callback_fpt)(BlockInterface*, boost::any&);
+struct sampletype;
+
+typedef void(*sink_callback_fpt)(BlockInterface*, const sampletype&);
+typedef void(*source_callback_fpt)(BlockInterface*, sampletype&);
 
 class Source
 {
 public:
+    void getSample( sampletype& sample ) { callback_func( block, sample); }
 private:
+    BlockInterface *block;
     std::string label;
     std::string type_id;
-    blockoutput_callback_fpt callback_func;
+    source_callback_fpt callback_func;
 };
 
 class Sink
 {
 public:
+    void setSample( sampletype& sample ) { callback_func( block, sample); }
 private:
+    BlockInterface *block;
     std::string label;
     std::string type_id;
-    blockinput_callback_fpt callback_func;
+    sink_callback_fpt callback_func;
 };
 
-// @todo call it BlockBase instead of BlockInterface?
 class BlockInterface
 {
 public:
 
-    void addInput( blockinput_callback_fpt func, const std::string &type_id, const std::string &label = "" );
-    void addOutput( blockoutput_callback_fpt func, const std::string &type_id, const std::string &label = "" );
+    // do these really belong to the interface?
+    //void addInput( sink_callback_fpt func, const std::string &type_id, const std::string &label = "" );
+    //void addOutput( source_callback_fpt func, const std::string &type_id, const std::string &label = "" );
 
     // example how to declare inputs/outputs
     //static void input( BlockInterface* this_ptr, const boost::any& buffer ) { }
